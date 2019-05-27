@@ -15,7 +15,7 @@ services:
     restart: always
 
   web:
-    build: ./mysite
+    build: ./main
     ports:
     - "8000:8000"
     volumes:
@@ -28,12 +28,12 @@ services:
     - db
     restart: always
 
-nginx:
+  nginx:
     build: ./config
     ports:
     - "80:80"
     volumes:
-    - ./mysite/static:/usr/share/nginx/html/static:ro
+    - ./static:/usr/share/nginx/html/static:ro
     links:
     - web
     depends_on:

@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_HOST=localhost
+      - MYSQL_DATABASE=docker
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./mysite/data/mysql:/var/lib/mysql:rw
+    restart: always
+
+  web:
+    build: ./mysite
+    ports:
+    - "8000:8000"
+    volumes:
+    - ./mysite:/mysite
+    - /tmp/logs:/tmp
+    command: bash start.sh  # 执行命令，有多种格式
+    links:
+    - db
+    depends_on:
+    - db
+    restart: always
+
+nginx:
+    build: ./nginx
+    ports:
+    - "80:80"
+    volumes:
+    - ./mysite/static:/usr/share/nginx/html/static:ro
+    links:
+    - web
+    depends_on:
+    - web
+    restart: always

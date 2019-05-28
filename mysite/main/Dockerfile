@@ -8,7 +8,7 @@ WORKDIR /mysite
 
 #将当前目录加入到工作目录中
 ADD . /mysite
-RUN pip3 install -r requirements.txt
+RUN pip3 install -i https://pypi.douban.com/simple -r requirements.txt
 
 #对外暴露端口
 EXPOSE 80 8080 8000 5000

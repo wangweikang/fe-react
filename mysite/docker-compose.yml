@@ -24,8 +24,11 @@ services:
     command: bash start.sh  # 执行命令，有多种格式
     links:
     - db
+    - sentinel
+    - redis-master:db
     depends_on:
     - db
+    - ui
     restart: always
 
   nginx:
@@ -39,3 +42,33 @@ services:
     depends_on:
     - web
     restart: always
+
+  ui:
+    image: node:10
+    restart: always
+    working_dir: "/opt/app"
+    ports:
+      - "18001:8000"
+    volumes:
+      - ./frontend-ui:/opt/app:rw
+    command: sh -c "test -d node_modules && npm run start || (npm install && npm run start)"
+
+  redis-master:
+    image: redis:latest
+    ports:
+     - 6379:6379
+    restart: always
+
+  redis-slave:
+    image: redis:latest
+    command: redis-server --slaveof master 6379
+    restart: always
+    links:
+    - redis-master:master
+ 
+  sentinel:
+    build: ./sentinel
+    restart: always
+    links:
+    - redis-master:redis-master
+    - redis-slave

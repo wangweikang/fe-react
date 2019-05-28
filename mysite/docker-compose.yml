@@ -11,7 +11,7 @@ services:
       - MYSQL_PASSWORD=root
       - MYSQL_ROOT_PASSWORD=root
     volumes:
-      - ./mysite/data/mysql:/var/lib/mysql
+      - ./data/mysql:/var/lib/mysql
     restart: always
 
   web:
@@ -21,7 +21,7 @@ services:
     volumes:
     - ./:/mysite
     - /tmp/logs:/tmp
-    command: bash ./main/start.sh  # 执行命令，有多种格式
+    command: bash start.sh  # 执行命令，有多种格式
     links:
     - db
     depends_on:

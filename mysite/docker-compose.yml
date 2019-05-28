@@ -17,41 +17,40 @@ services:
   web:
     build: ./main
     ports:
-    - "8000:8000"
+      - "8000:8000"
     volumes:
-    - ./:/mysite
-    - /tmp/logs:/tmp
+      - ./:/mysite
+      - /tmp/logs:/tmp
     command: bash start.sh  # 执行命令，有多种格式
     links:
-    - db
-    - sentinel
-    - redis-master:db
+      - db
+      - sentinel
+      - redis-master:redis
     depends_on:
-    - db
-    - ui
+      - db
+      - nginx
+      - sentinel
+      - redis-master
     restart: always
 
   nginx:
     build: ./config
     ports:
-    - "80:80"
+      - "80:80"
     volumes:
-    - ./static:/usr/share/nginx/html/static:ro
-    links:
-    - web
-    depends_on:
-    - web
+      - ./static:/usr/share/nginx/html/static:ro
     restart: always
 
-  ui:
-    image: node:10
-    restart: always
-    working_dir: "/opt/app"
-    ports:
-      - "18001:8000"
-    volumes:
-      - ./frontend-ui:/opt/app:rw
-    command: sh -c "test -d node_modules && npm run start || (npm install && npm run start)"
+
+#  ui:
+#    image: node:10
+#    restart: always
+#    working_dir: "/opt/app"
+#    ports:
+#      - "18001:8000"
+#    volumes:
+#      - ./frontend-ui:/opt/app:rw
+#    command: sh -c "test -d node_modules && npm run start || (npm install && npm run start)"
 
   redis-master:
     image: redis:latest
@@ -65,7 +64,7 @@ services:
     restart: always
     links:
     - redis-master:master
- 
+
   sentinel:
     build: ./sentinel
     restart: always

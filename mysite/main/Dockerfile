@@ -1,4 +1,4 @@
-FROM django:latest
+FROM python:3.6
 
 # 创建工作目录
 RUN mkdir /mysite  

@@ -11,7 +11,7 @@ services:
       - MYSQL_PASSWORD=root
       - MYSQL_ROOT_PASSWORD=root
     volumes:
-      - ./mysite/data/mysql:/var/lib/mysql:rw
+      - ./mysite/data/mysql:/var/lib/mysql
     restart: always
 
   web:

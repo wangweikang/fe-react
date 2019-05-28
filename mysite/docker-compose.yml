@@ -21,7 +21,7 @@ services:
     volumes:
     - ./:/mysite
     - /tmp/logs:/tmp
-    command: bash start.sh  # 执行命令，有多种格式
+    command: bash ./main/start.sh  # 执行命令，有多种格式
     links:
     - db
     depends_on:

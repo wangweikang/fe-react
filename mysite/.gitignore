@@ -3,3 +3,8 @@ __pycache__/
 data
 .DS_Store
 node_modules/
+*.pyc
+
+*.log*
+*.iml
+.vscode

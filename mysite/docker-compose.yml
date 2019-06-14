@@ -59,14 +59,17 @@ services:
     image: redis:latest
     ports:
      - 6379:6379
+    volumes:
+      - ./data/redis:/data
+    entrypoint: redis-server --appendonly yes
     restart: always
 
   redis-slave:
     image: redis:latest
-    command: redis-server --slaveof master 6379
+    command: redis-server --slaveof redis-master 6379
     restart: always
     links:
-    - redis-master:master
+    - redis-master:redis-master
 
   sentinel:
     build: ./sentinel

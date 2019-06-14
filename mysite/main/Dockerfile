@@ -11,7 +11,7 @@ ADD . /mysite
 RUN pip3 install -i https://pypi.douban.com/simple -r requirements.txt
 
 #对外暴露端口
-EXPOSE 80 8080 8000 5000
+EXPOSE 8080 8000
 
 #设置环境变量
 ENV SPIDER=/mysite

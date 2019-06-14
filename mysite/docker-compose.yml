@@ -25,7 +25,6 @@ services:
     links:
       - db
       - sentinel
-      - redis-master:redis
     depends_on:
       - ui
       - db

@@ -5,7 +5,7 @@ import redis
 from redis.sentinel import Sentinel
 
 sentinel = Sentinel([('sentinel', 26379)], socket_timeout=0.1)
-rds = sentinel.master_for('master', socket_timeout=0.1)
+rds = sentinel.master_for('redis-master', socket_timeout=0.1)
 
 def ping(request):
     rds.incr('count', 1)

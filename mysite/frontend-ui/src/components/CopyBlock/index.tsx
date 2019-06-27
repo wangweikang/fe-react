@@ -66,11 +66,9 @@ export default connect(({ routing }: { routing: RoutingType }) => ({
   const divDom = useRef<HTMLDivElement>(null);
   return (
     <Popover
-      title={<FormattedMessage id="app.preview.down.block" defaultMessage="下载此页面到本地项目" />}
+      title="回到顶部"
       placement="topLeft"
-      content={<BlockCodeView url={url} />}
       trigger="click"
-      getPopupContainer={dom => (divDom.current ? divDom.current : dom)}
     >
       <div className={styles['copy-block']} ref={divDom}>
         <Icon type="download" />

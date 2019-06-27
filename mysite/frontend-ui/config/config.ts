@@ -109,11 +109,6 @@ export default {
               component: './user/register',
             },
             {
-              name: 'settings',
-              path: '/user/settings',
-              component: './user/settings',
-            },
-            {
               component: '404',
             },
           ],

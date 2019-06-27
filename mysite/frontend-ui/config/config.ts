@@ -109,6 +109,11 @@ export default {
               component: './user/register',
             },
             {
+              name: 'settings',
+              path: '/user/settings',
+              component: './user/settings',
+            },
+            {
               component: '404',
             },
           ],
@@ -128,6 +133,16 @@ export default {
                   name: 'analysis',
                   path: '/dashboard/analysis',
                   component: './dashboard/analysis',
+                },
+                {
+                  name: 'monitor',
+                  path: '/dashboard/monitor',
+                  component: './dashboard/monitor',
+                },
+                {
+                  name: 'workplace',
+                  path: '/dashboard/workplace',
+                  component: './dashboard/workplace',
                 },
               ],
             },
@@ -245,6 +260,11 @@ export default {
                   path: '/exception/500',
                   component: './exception/500',
                 },
+                {
+                  name: '404',
+                  path: '/exception/404',
+                  component: './exception/404',
+                },
               ],
             },
             {
@@ -273,6 +293,11 @@ export default {
                   name: 'koni',
                   path: '/editor/koni',
                   component: './editor/koni',
+                },
+                {
+                  name: 'mind',
+                  path: '/editor/mind',
+                  component: './editor/mind',
                 },
               ],
             },
@@ -309,7 +334,7 @@ export default {
         resourcePath: string;
       },
       _: string,
-      localName: string,
+      localName: string
     ) => {
       if (
         context.resourcePath.includes('node_modules') ||

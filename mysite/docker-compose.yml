@@ -52,7 +52,7 @@ services:
      - "18001:8000"
    volumes:
      - ./frontend-ui:/opt/app:rw
-   command: sh -c "test -d node_modules && npm run start || (npm install && npm run start)"
+   command: sh -c "test -d node_modules && npm start || (npm install && npm start)"
 
   redis-master:
     image: redis:latest

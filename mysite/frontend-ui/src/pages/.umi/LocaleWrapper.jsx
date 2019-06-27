@@ -35,7 +35,7 @@ defaultAntd = defaultAntd.default || defaultAntd;
 const localeInfo = {
   'en-US': {
     messages: {
-      ...require('/opt/app/src/locales/en-US.js').default,...require('/opt/app/src/pages/dashboard/analysis/locales/en-US.ts').default,...require('/opt/app/src/pages/user-login/locales/en-US.ts').default,...require('/opt/app/src/pages/user-register/locales/en-US.ts').default,
+      ...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/locales/en-US.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/dashboard/analysis/locales/en-US.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/editor/flow/locales/en-US.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/editor/koni/locales/en-US.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/exception/403/locales/en-US.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/exception/500/locales/en-US.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/form/basic-form/locales/en-US.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/form/step-form/locales/en-US.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/result/fail/locales/en-US.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/result/success/locales/en-US.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/user/register-result/locales/en-US.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/user/register/locales/en-US.ts').default,
     },
     locale: 'en-US',
     antd: require('antd/lib/locale-provider/en_US'),
@@ -44,7 +44,7 @@ const localeInfo = {
   },
   'pt-BR': {
     messages: {
-      ...require('/opt/app/src/locales/pt-BR.js').default,...require('/opt/app/src/pages/dashboard/analysis/locales/pt-BR.ts').default,
+      ...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/locales/pt-BR.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/dashboard/analysis/locales/pt-BR.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/exception/403/locales/pt-BR.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/exception/500/locales/pt-BR.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/form/basic-form/locales/pt-BR.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/form/step-form/locales/pt-BR.ts').default,
     },
     locale: 'pt-BR',
     antd: require('antd/lib/locale-provider/pt_BR'),
@@ -53,7 +53,7 @@ const localeInfo = {
   },
   'zh-CN': {
     messages: {
-      ...require('/opt/app/src/locales/zh-CN.js').default,...require('/opt/app/src/pages/dashboard/analysis/locales/zh-CN.ts').default,...require('/opt/app/src/pages/user-login/locales/zh-CN.ts').default,...require('/opt/app/src/pages/user-register/locales/zh-CN.ts').default,
+      ...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/locales/zh-CN.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/dashboard/analysis/locales/zh-CN.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/editor/flow/locales/zh-CN.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/editor/koni/locales/zh-CN.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/exception/403/locales/zh-CN.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/exception/500/locales/zh-CN.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/form/basic-form/locales/zh-CN.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/form/step-form/locales/zh-CN.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/result/fail/locales/zh-CN.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/result/success/locales/zh-CN.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/user/register-result/locales/zh-CN.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/user/register/locales/zh-CN.ts').default,
     },
     locale: 'zh-CN',
     antd: require('antd/lib/locale-provider/zh_CN'),
@@ -62,7 +62,7 @@ const localeInfo = {
   },
   'zh-TW': {
     messages: {
-      ...require('/opt/app/src/locales/zh-TW.js').default,...require('/opt/app/src/pages/dashboard/analysis/locales/zh-TW.ts').default,...require('/opt/app/src/pages/user-login/locales/zh-TW.ts').default,...require('/opt/app/src/pages/user-register/locales/zh-TW.ts').default,
+      ...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/locales/zh-TW.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/dashboard/analysis/locales/zh-TW.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/exception/403/locales/zh-TW.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/exception/500/locales/zh-TW.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/form/basic-form/locales/zh-TW.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/form/step-form/locales/zh-TW.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/result/fail/locales/zh-TW.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/result/success/locales/zh-TW.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/user/register-result/locales/zh-TW.ts').default,...require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/user/register/locales/zh-TW.ts').default,
     },
     locale: 'zh-TW',
     antd: require('antd/lib/locale-provider/zh_TW'),
@@ -85,9 +85,18 @@ class LocaleWrapper extends React.Component{
 
     const runtimeLocale = require('umi/_runtimePlugin').mergeConfig('locale') || {};
     const runtimeLocaleDefault =  typeof runtimeLocale.default === 'function' ? runtimeLocale.default() : runtimeLocale.default;
-    if (useLocalStorage && localStorage.getItem('umi_locale') && localeInfo[localStorage.getItem('umi_locale')]) {
+    if (
+      useLocalStorage
+      && typeof localStorage !== 'undefined'
+      && localStorage.getItem('umi_locale')
+      && localeInfo[localStorage.getItem('umi_locale')]
+    ) {
       appLocale = localeInfo[localStorage.getItem('umi_locale')];
-    } else if (localeInfo[navigator.language] && baseNavigator){
+    } else if (
+      typeof navigator !== 'undefined'
+      && localeInfo[navigator.language]
+      && baseNavigator
+    ) {
       appLocale = localeInfo[navigator.language];
     } else if(localeInfo[runtimeLocaleDefault]){
       appLocale = localeInfo[runtimeLocaleDefault];

@@ -12,6 +12,7 @@ export function _onCreate() {
     history,
     
     ...(runtimeDva.config || {}),
+    ...(window.g_useSSR ? { initialState: window.g_initialData } : {}),
   });
   
   app.use(createLoading());
@@ -19,10 +20,11 @@ export function _onCreate() {
     app.use(plugin);
   });
   
-  app.model({ namespace: 'global', ...(require('/opt/app/src/models/global.js').default) });
-app.model({ namespace: 'login', ...(require('/opt/app/src/models/login.js').default) });
-app.model({ namespace: 'setting', ...(require('/opt/app/src/models/setting.js').default) });
-app.model({ namespace: 'user', ...(require('/opt/app/src/models/user.js').default) });
+  app.model({ namespace: 'global', ...(require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/models/global.ts').default) });
+app.model({ namespace: 'login', ...(require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/models/login.ts').default) });
+app.model({ namespace: 'setting', ...(require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/models/setting.ts').default) });
+app.model({ namespace: 'user', ...(require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/models/user.ts').default) });
+  return app;
 }
 
 export function getApp() {

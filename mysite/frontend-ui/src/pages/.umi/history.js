@@ -1,5 +1,5 @@
 // create history
-const history = require('umi/_createHistory').default({
+const history = require('umi/lib/createHistory').default({
   basename: window.routerBase,
 });
 window.g_history = history;

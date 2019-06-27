@@ -3,7 +3,7 @@ import { Router as DefaultRouter, Route, Switch } from 'react-router-dom';
 import dynamic from 'umi/dynamic';
 import renderRoutes from 'umi/lib/renderRoutes';
 import history from '@tmp/history';
-import RendererWrapper0 from '/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/.umi/LocaleWrapper.jsx'
+import RendererWrapper0 from '/opt/app/src/pages/.umi/LocaleWrapper.jsx'
 import _dvaDynamic from 'dva/dynamic'
 
 const Router = require('dva/router').routerRedux.ConnectedRouter;
@@ -15,7 +15,7 @@ const routes = [
     ? _dvaDynamic({
       
       component: () => import(/* webpackChunkName: "layouts__BlankLayout" */'../../layouts/BlankLayout'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../../layouts/BlankLayout').default,
     "routes": [
@@ -25,7 +25,7 @@ const routes = [
     ? _dvaDynamic({
       
       component: () => import(/* webpackChunkName: "layouts__UserLayout" */'../../layouts/UserLayout'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../../layouts/UserLayout').default,
         "routes": [
@@ -41,9 +41,24 @@ const routes = [
     ? _dvaDynamic({
       
       component: () => import(/* webpackChunkName: "p__user__register-result" */'../user/register-result'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../user/register-result').default,
+            "exact": true
+          },
+          {
+            "name": "login",
+            "path": "/user/login",
+            "component": __IS_BROWSER
+    ? _dvaDynamic({
+      app: require('@tmp/dva').getApp(),
+models: () => [
+  import(/* webpackChunkName: 'p__user__login__model.ts' */'/opt/app/src/pages/user/login/model.ts').then(m => { return { namespace: 'model',...m.default}})
+],
+      component: () => import(/* webpackChunkName: "p__user__login" */'../user/login'),
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
+    })
+    : require('../user/login').default,
             "exact": true
           },
           {
@@ -53,10 +68,10 @@ const routes = [
     ? _dvaDynamic({
       app: require('@tmp/dva').getApp(),
 models: () => [
-  import(/* webpackChunkName: 'p__user__register__model.ts' */'/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/user/register/model.ts').then(m => { return { namespace: 'model',...m.default}})
+  import(/* webpackChunkName: 'p__user__register__model.ts' */'/opt/app/src/pages/user/register/model.ts').then(m => { return { namespace: 'model',...m.default}})
 ],
       component: () => import(/* webpackChunkName: "p__user__register" */'../user/register'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../user/register').default,
             "exact": true
@@ -66,13 +81,13 @@ models: () => [
     ? _dvaDynamic({
       
       component: () => import(/* webpackChunkName: "p__404" */'../404'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../404').default,
             "exact": true
           },
           {
-            "component": () => React.createElement(require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+            "component": () => React.createElement(require('/opt/app/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
           }
         ]
       },
@@ -82,7 +97,7 @@ models: () => [
     ? _dvaDynamic({
       
       component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../../layouts/BasicLayout'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../../layouts/BasicLayout').default,
         "Routes": [require('../Authorized').default],
@@ -103,16 +118,16 @@ models: () => [
     ? _dvaDynamic({
       app: require('@tmp/dva').getApp(),
 models: () => [
-  import(/* webpackChunkName: 'p__dashboard__analysis__model.tsx' */'/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/dashboard/analysis/model.tsx').then(m => { return { namespace: 'model',...m.default}})
+  import(/* webpackChunkName: 'p__dashboard__analysis__model.tsx' */'/opt/app/src/pages/dashboard/analysis/model.tsx').then(m => { return { namespace: 'model',...m.default}})
 ],
       component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../dashboard/analysis'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../dashboard/analysis').default,
                 "exact": true
               },
               {
-                "component": () => React.createElement(require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+                "component": () => React.createElement(require('/opt/app/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
               }
             ]
           },
@@ -128,10 +143,10 @@ models: () => [
     ? _dvaDynamic({
       app: require('@tmp/dva').getApp(),
 models: () => [
-  import(/* webpackChunkName: 'p__form__basic-form__model.ts' */'/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/form/basic-form/model.ts').then(m => { return { namespace: 'model',...m.default}})
+  import(/* webpackChunkName: 'p__form__basic-form__model.ts' */'/opt/app/src/pages/form/basic-form/model.ts').then(m => { return { namespace: 'model',...m.default}})
 ],
       component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../form/basic-form'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../form/basic-form').default,
                 "exact": true
@@ -143,10 +158,10 @@ models: () => [
     ? _dvaDynamic({
       app: require('@tmp/dva').getApp(),
 models: () => [
-  import(/* webpackChunkName: 'p__form__step-form__model.ts' */'/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/form/step-form/model.ts').then(m => { return { namespace: 'model',...m.default}})
+  import(/* webpackChunkName: 'p__form__step-form__model.ts' */'/opt/app/src/pages/form/step-form/model.ts').then(m => { return { namespace: 'model',...m.default}})
 ],
       component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../form/step-form'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../form/step-form').default,
                 "exact": true
@@ -158,16 +173,16 @@ models: () => [
     ? _dvaDynamic({
       app: require('@tmp/dva').getApp(),
 models: () => [
-  import(/* webpackChunkName: 'p__form__advanced-form__model.ts' */'/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/form/advanced-form/model.ts').then(m => { return { namespace: 'model',...m.default}})
+  import(/* webpackChunkName: 'p__form__advanced-form__model.ts' */'/opt/app/src/pages/form/advanced-form/model.ts').then(m => { return { namespace: 'model',...m.default}})
 ],
       component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../form/advanced-form'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../form/advanced-form').default,
                 "exact": true
               },
               {
-                "component": () => React.createElement(require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+                "component": () => React.createElement(require('/opt/app/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
               }
             ]
           },
@@ -183,7 +198,7 @@ models: () => [
     ? _dvaDynamic({
       
       component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../list/search'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../list/search').default,
                 "routes": [
@@ -199,10 +214,10 @@ models: () => [
     ? _dvaDynamic({
       app: require('@tmp/dva').getApp(),
 models: () => [
-  import(/* webpackChunkName: 'p__list__search__projects__model.ts' */'/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/list/search/projects/model.ts').then(m => { return { namespace: 'model',...m.default}})
+  import(/* webpackChunkName: 'p__list__search__projects__model.ts' */'/opt/app/src/pages/list/search/projects/model.ts').then(m => { return { namespace: 'model',...m.default}})
 ],
       component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../list/search/projects'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../list/search/projects').default,
                     "exact": true
@@ -214,16 +229,16 @@ models: () => [
     ? _dvaDynamic({
       app: require('@tmp/dva').getApp(),
 models: () => [
-  import(/* webpackChunkName: 'p__list__search__applications__model.ts' */'/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/list/search/applications/model.ts').then(m => { return { namespace: 'model',...m.default}})
+  import(/* webpackChunkName: 'p__list__search__applications__model.ts' */'/opt/app/src/pages/list/search/applications/model.ts').then(m => { return { namespace: 'model',...m.default}})
 ],
       component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../list/search/applications'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../list/search/applications').default,
                     "exact": true
                   },
                   {
-                    "component": () => React.createElement(require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+                    "component": () => React.createElement(require('/opt/app/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
                   }
                 ]
               },
@@ -234,10 +249,10 @@ models: () => [
     ? _dvaDynamic({
       app: require('@tmp/dva').getApp(),
 models: () => [
-  import(/* webpackChunkName: 'p__list__table-list__model.ts' */'/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/list/table-list/model.ts').then(m => { return { namespace: 'model',...m.default}})
+  import(/* webpackChunkName: 'p__list__table-list__model.ts' */'/opt/app/src/pages/list/table-list/model.ts').then(m => { return { namespace: 'model',...m.default}})
 ],
       component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../list/table-list'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../list/table-list').default,
                 "exact": true
@@ -249,10 +264,10 @@ models: () => [
     ? _dvaDynamic({
       app: require('@tmp/dva').getApp(),
 models: () => [
-  import(/* webpackChunkName: 'p__list__basic-list__model.ts' */'/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/list/basic-list/model.ts').then(m => { return { namespace: 'model',...m.default}})
+  import(/* webpackChunkName: 'p__list__basic-list__model.ts' */'/opt/app/src/pages/list/basic-list/model.ts').then(m => { return { namespace: 'model',...m.default}})
 ],
       component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../list/basic-list'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../list/basic-list').default,
                 "exact": true
@@ -264,16 +279,16 @@ models: () => [
     ? _dvaDynamic({
       app: require('@tmp/dva').getApp(),
 models: () => [
-  import(/* webpackChunkName: 'p__list__card-list__model.ts' */'/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/list/card-list/model.ts').then(m => { return { namespace: 'model',...m.default}})
+  import(/* webpackChunkName: 'p__list__card-list__model.ts' */'/opt/app/src/pages/list/card-list/model.ts').then(m => { return { namespace: 'model',...m.default}})
 ],
       component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../list/card-list'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../list/card-list').default,
                 "exact": true
               },
               {
-                "component": () => React.createElement(require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+                "component": () => React.createElement(require('/opt/app/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
               }
             ]
           },
@@ -289,10 +304,10 @@ models: () => [
     ? _dvaDynamic({
       app: require('@tmp/dva').getApp(),
 models: () => [
-  import(/* webpackChunkName: 'p__profile__basic__model.ts' */'/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/profile/basic/model.ts').then(m => { return { namespace: 'model',...m.default}})
+  import(/* webpackChunkName: 'p__profile__basic__model.ts' */'/opt/app/src/pages/profile/basic/model.ts').then(m => { return { namespace: 'model',...m.default}})
 ],
       component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../profile/basic'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../profile/basic').default,
                 "exact": true
@@ -304,16 +319,16 @@ models: () => [
     ? _dvaDynamic({
       app: require('@tmp/dva').getApp(),
 models: () => [
-  import(/* webpackChunkName: 'p__profile__advanced__model.ts' */'/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/profile/advanced/model.ts').then(m => { return { namespace: 'model',...m.default}})
+  import(/* webpackChunkName: 'p__profile__advanced__model.ts' */'/opt/app/src/pages/profile/advanced/model.ts').then(m => { return { namespace: 'model',...m.default}})
 ],
       component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../profile/advanced'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../profile/advanced').default,
                 "exact": true
               },
               {
-                "component": () => React.createElement(require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+                "component": () => React.createElement(require('/opt/app/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
               }
             ]
           },
@@ -329,7 +344,7 @@ models: () => [
     ? _dvaDynamic({
       
       component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../result/success'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../result/success').default,
                 "exact": true
@@ -341,13 +356,13 @@ models: () => [
     ? _dvaDynamic({
       
       component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../result/fail'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../result/fail').default,
                 "exact": true
               },
               {
-                "component": () => React.createElement(require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+                "component": () => React.createElement(require('/opt/app/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
               }
             ]
           },
@@ -363,7 +378,7 @@ models: () => [
     ? _dvaDynamic({
       
       component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../exception/403'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../exception/403').default,
                 "exact": true
@@ -375,13 +390,13 @@ models: () => [
     ? _dvaDynamic({
       
       component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../exception/500'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../exception/500').default,
                 "exact": true
               },
               {
-                "component": () => React.createElement(require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+                "component": () => React.createElement(require('/opt/app/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
               }
             ]
           },
@@ -397,16 +412,16 @@ models: () => [
     ? _dvaDynamic({
       app: require('@tmp/dva').getApp(),
 models: () => [
-  import(/* webpackChunkName: 'p__account__center__model.ts' */'/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/pages/account/center/model.ts').then(m => { return { namespace: 'model',...m.default}})
+  import(/* webpackChunkName: 'p__account__center__model.ts' */'/opt/app/src/pages/account/center/model.ts').then(m => { return { namespace: 'model',...m.default}})
 ],
       component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../account/center'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../account/center').default,
                 "exact": true
               },
               {
-                "component": () => React.createElement(require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+                "component": () => React.createElement(require('/opt/app/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
               }
             ]
           },
@@ -422,7 +437,7 @@ models: () => [
     ? _dvaDynamic({
       
       component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../editor/flow'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../editor/flow').default,
                 "exact": true
@@ -434,13 +449,13 @@ models: () => [
     ? _dvaDynamic({
       
       component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../editor/koni'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../editor/koni').default,
                 "exact": true
               },
               {
-                "component": () => React.createElement(require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+                "component": () => React.createElement(require('/opt/app/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
               }
             ]
           },
@@ -458,23 +473,23 @@ models: () => [
     ? _dvaDynamic({
       
       component: () => import(/* webpackChunkName: "p__404" */'../404'),
-      LoadingComponent: require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/src/components/PageLoading/index').default,
+      LoadingComponent: require('/opt/app/src/components/PageLoading/index').default,
     })
     : require('../404').default,
             "exact": true
           },
           {
-            "component": () => React.createElement(require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+            "component": () => React.createElement(require('/opt/app/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
           }
         ]
       },
       {
-        "component": () => React.createElement(require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+        "component": () => React.createElement(require('/opt/app/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
       }
     ]
   },
   {
-    "component": () => React.createElement(require('/Users/wangweikang/www/fe-react/mysite/frontend-ui/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+    "component": () => React.createElement(require('/opt/app/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
   }
 ];
 window.g_routes = routes;

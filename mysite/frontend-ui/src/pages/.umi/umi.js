@@ -3,7 +3,7 @@ import history from './history';
 import '../../global.tsx';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import findRoute from '/Users/wangweikang/www/fe-react/mysite/frontend-ui/node_modules/umi-build-dev/lib/findRoute.js';
+import findRoute from '/opt/app/node_modules/umi-build-dev/lib/findRoute.js';
 
 
 // runtime plugins

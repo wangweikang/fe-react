@@ -69,6 +69,8 @@ services:
     restart: always
     links:
     - redis-master:redis-master
+    deploy:
+      replicas: 2
 
   sentinel:
     build: ./sentinel
@@ -76,3 +78,5 @@ services:
     links:
     - redis-master:redis-master
     - redis-slave
+    deploy:
+      replicas: 3

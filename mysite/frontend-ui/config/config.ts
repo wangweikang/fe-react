@@ -52,7 +52,7 @@ const plugins: IPlugin[] = [
       autoAddMenu: true,
     },
   ],
-]; // 针对 preview.pro.ant.design 的 GA 统计代码
+];
 
 if (isAntDesignProPreview) {
   plugins.push([

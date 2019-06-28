@@ -16,8 +16,11 @@ import Link from 'umi/link';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import { connect } from 'dva';
 import { formatMessage } from 'umi-plugin-react/locale';
-import { isAntDesignPro } from '@/utils/utils';
 import logo from '../assets/logo.svg';
+import { Layout, Icon } from 'antd'
+
+const { Footer } = Layout
+
 export interface BasicLayoutProps extends ProLayoutProps, Omit<ConnectProps, 'location'> {
   breadcrumbNameMap: {
     [path: string]: MenuDataItem;
@@ -40,29 +43,11 @@ const menuDataRender = (menuList: MenuDataItem[]): MenuDataItem[] =>
   });
 
 const footerRender: BasicLayoutProps['footerRender'] = (_, defaultDom) => {
-  if (!isAntDesignPro()) {
-    return defaultDom;
-  }
-
-  return (
-    <>
-      {defaultDom}
-      <div
-        style={{
-          padding: '0px 24px 24px',
-          textAlign: 'center',
-        }}
-      >
-        <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer">
-          <img
-            src="https://www.netlify.com/img/global/badges/netlify-color-bg.svg"
-            width="82px"
-            alt="netlify logo"
-          />
-        </a>
-      </div>
-    </>
-  );
+  return (<Footer style={{ textAlign: 'center' }}>
+    This Will
+    <Icon type="github" />
+    <a href='https://github.com/wangweikang/fe-react'>Code</a>
+  </Footer>)
 };
 
 const BasicLayout: React.FC<BasicLayoutProps> = props => {
@@ -119,6 +104,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
       >
         {children}
       </ProLayout>
+      {/* 右侧整体风格设置 */}
       <SettingDrawer
         settings={settings}
         onSettingChange={config =>

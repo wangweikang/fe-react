@@ -1,7 +1,6 @@
 import { Icon, Popover, Typography } from 'antd';
 import React, { useRef } from 'react';
 
-import { FormattedMessage } from 'umi-plugin-react/locale';
 import { connect } from 'dva';
 import { isAntDesignPro } from '@/utils/utils';
 import styles from './index.less';

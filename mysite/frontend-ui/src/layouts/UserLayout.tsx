@@ -1,5 +1,5 @@
 import { ConnectProps, ConnectState } from '@/models/connect';
-import { DefaultFooter, MenuDataItem, getMenuData, getPageTitle } from '@ant-design/pro-layout';
+import { MenuDataItem, getMenuData, getPageTitle } from '@ant-design/pro-layout';
 
 import DocumentTitle from 'react-document-title';
 import Link from 'umi/link';
@@ -9,6 +9,9 @@ import { connect } from 'dva';
 import { formatMessage } from 'umi-plugin-react/locale';
 import logo from '../assets/logo.svg';
 import styles from './UserLayout.less';
+import { Layout, Icon } from 'antd'
+
+const { Footer } = Layout
 
 export interface UserLayoutProps extends ConnectProps {
   breadcrumbNameMap: { [path: string]: MenuDataItem };
@@ -54,7 +57,11 @@ const UserLayout: React.SFC<UserLayoutProps> = props => {
           </div>
           {children}
         </div>
-        <DefaultFooter />
+        <Footer style={{ textAlign: 'center' }}>
+          This Will
+          <Icon type="github" />
+          <a href='https://github.com/wangweikang/fe-react'>Code</a>
+        </Footer>
       </div>
     </DocumentTitle>
   );

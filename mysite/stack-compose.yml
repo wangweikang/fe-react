@@ -1,0 +1,61 @@
+version: "3"
+
+services:
+
+  # db:
+  #   image: mysql:5.7
+  #   environment:
+  #     - MYSQL_HOST=localhost
+  #     - MYSQL_DATABASE=docker
+  #     - MYSQL_USER=root
+  #     - MYSQL_PASSWORD=root
+  #     - MYSQL_ROOT_PASSWORD=root
+  #   volumes:
+  #     - ./data/mysql:/var/lib/mysql
+
+  # web:
+  #   build: ./main
+  #   ports:
+  #     - "8000:8080"
+  #   volumes:
+  #     - ./:/mysite
+  #     - /tmp/logs:/tmp
+  #   command: bash start.sh  # 执行命令，有多种格式
+  #   depends_on:
+  #     - ui
+  #     - db
+  #     - nginx
+  #     - sentinel
+  #     - redis-master
+
+  ui:
+   image: node:10
+   working_dir: "/opt/app"
+   ports:
+     - "18001:8000"
+   volumes:
+     - ./frontend-ui:/opt/app:rw
+   command: sh -c "test -d node_modules && npm start || (npm install && npm start)"
+
+  # redis-master:
+  #   image: redis:latest
+  #   ports:
+  #    - 6379:6379
+  #   volumes:
+  #     - ./data/redis:/data
+  #   entrypoint: redis-server --appendonly yes
+
+  # redis-slave:
+  #   image: redis:latest
+  #   command: redis-server --slaveof redis-master 6379
+  #   deploy:
+  #     replicas: 2
+
+  # sentinel:
+  #   build: ./sentinel
+  #   deploy:
+  #     replicas: 3
+
+networks:
+  nginx-net:
+    external: true

@@ -14,7 +14,7 @@ export const Nav00DataSource = {
         a: {
           children: (
             <>
-              <p>首页</p>
+              首页
             </>
           ),
           href: '',
@@ -25,7 +25,7 @@ export const Nav00DataSource = {
         a: {
           children: (
             <>
-              <p>新闻</p>
+              新闻
             </>
           ),
           href: '',
@@ -36,7 +36,7 @@ export const Nav00DataSource = {
         a: {
           children: (
             <>
-              <P>关于</P>
+              关于
             </>
           ),
           href: '',
@@ -47,10 +47,10 @@ export const Nav00DataSource = {
         a: {
           children: (
             <>
-              <p>后台</p>
+              后台
             </>
           ),
-          href: '',
+          href: 'http://thiswjk.xyz/dashboard/workplace',
         },
       },
     ],
@@ -94,7 +94,7 @@ export const Content00DataSource = {
   OverPack: { playScale: 0.3, className: '' },
   titleWrapper: {
     className: 'title-wrapper',
-    children: [{ name: 'title', children: '产品与服务' }],
+    children: [{ name: 'title', children: '高质量的产品与服务' }],
   },
   block: {
     className: 'block-wrapper',
@@ -344,7 +344,7 @@ export const Teams00DataSource = {
               name: 'content2',
               children: (
                 <>
-                  <p>公司+工程师</p>
+                  <p>一个不那么著名的公司+全栈工程师</p>
                 </>
               ),
               className: 'teams0-content',

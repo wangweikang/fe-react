@@ -86,6 +86,10 @@ export default {
       component: '../layouts/BlankLayout',
       routes: [
         {
+          path: '/',
+          component: './Home',
+        },
+        {
           path: '/user',
           component: '../layouts/UserLayout',
           routes: [
@@ -125,6 +129,11 @@ export default {
               icon: 'dashboard',
               routes: [
                 {
+                  name: 'workplace',
+                  path: '/dashboard/workplace',
+                  component: './dashboard/workplace',
+                },
+                {
                   name: 'analysis',
                   path: '/dashboard/analysis',
                   component: './dashboard/analysis',
@@ -133,11 +142,6 @@ export default {
                   name: 'monitor',
                   path: '/dashboard/monitor',
                   component: './dashboard/monitor',
-                },
-                {
-                  name: 'workplace',
-                  path: '/dashboard/workplace',
-                  component: './dashboard/workplace',
                 },
               ],
             },

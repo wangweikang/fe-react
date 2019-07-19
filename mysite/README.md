@@ -1,5 +1,0 @@
-Usage:
-
-```
-bash run.sh
-```

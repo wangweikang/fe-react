@@ -12,12 +12,12 @@ import ProLayout, {
 import React, { useEffect } from 'react';
 import Link from 'umi/link';
 import { connect } from 'dva';
+import { formatMessage } from 'umi-plugin-react/locale';
 import Authorized from '@/utils/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import { ConnectState, Dispatch } from '@/models/connect';
 import { isAntDesignPro } from '@/utils/utils';
 import logo from '../assets/logo.svg';
-
 export interface BasicLayoutProps extends ProLayoutProps {
   breadcrumbNameMap: {
     [path: string]: MenuDataItem;
@@ -108,7 +108,10 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
         breadcrumbRender={(routers = []) => [
           {
             path: '/',
-            breadcrumbName: '首页',
+            breadcrumbName: formatMessage({
+              id: 'menu.home',
+              defaultMessage: 'Home',
+            }),
           },
           ...routers,
         ]}
@@ -122,6 +125,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
         }}
         footerRender={footerRender}
         menuDataRender={menuDataRender}
+        formatMessage={formatMessage}
         rightContentRender={rightProps => <RightContent {...rightProps} />}
         {...props}
         {...settings}

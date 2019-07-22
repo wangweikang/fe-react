@@ -1,44 +1,86 @@
+import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Component, Fragment } from 'react';
+
 import { List } from 'antd';
 
 type Unpacked<T> = T extends (infer U)[] ? U : T;
+
 const passwordStrength = {
-  strong: <span className="strong">强</span>,
-  medium: <span className="medium">中</span>,
-  weak: <span className="weak">弱 Weak</span>,
+  strong: (
+    <span className="strong">
+      <FormattedMessage id="account-settings.security.strong" defaultMessage="Strong" />
+    </span>
+  ),
+  medium: (
+    <span className="medium">
+      <FormattedMessage id="account-settings.security.medium" defaultMessage="Medium" />
+    </span>
+  ),
+  weak: (
+    <span className="weak">
+      <FormattedMessage id="account-settings.security.weak" defaultMessage="Weak" />
+      Weak
+    </span>
+  ),
 };
 
 class SecurityView extends Component {
   getData = () => [
     {
-      title: '账户密码',
+      title: formatMessage({ id: 'account-settings.security.password' }, {}),
       description: (
         <Fragment>
-          当前密码强度：：
+          {formatMessage({ id: 'account-settings.security.password-description' })}：
           {passwordStrength.strong}
         </Fragment>
       ),
-      actions: [<a key="Modify">修改</a>],
+      actions: [
+        <a key="Modify">
+          <FormattedMessage id="account-settings.security.modify" defaultMessage="Modify" />
+        </a>,
+      ],
     },
     {
-      title: '密保手机',
-      description: `${'已绑定手机：'}：138****8293`,
-      actions: [<a key="Modify">修改</a>],
+      title: formatMessage({ id: 'account-settings.security.phone' }, {}),
+      description: `${formatMessage(
+        { id: 'account-settings.security.phone-description' },
+        {},
+      )}：138****8293`,
+      actions: [
+        <a key="Modify">
+          <FormattedMessage id="account-settings.security.modify" defaultMessage="Modify" />
+        </a>,
+      ],
     },
     {
-      title: '密保问题',
-      description: '未设置密保问题，密保问题可有效保护账户安全',
-      actions: [<a key="Set">设置</a>],
+      title: formatMessage({ id: 'account-settings.security.question' }, {}),
+      description: formatMessage({ id: 'account-settings.security.question-description' }, {}),
+      actions: [
+        <a key="Set">
+          <FormattedMessage id="account-settings.security.set" defaultMessage="Set" />
+        </a>,
+      ],
     },
     {
-      title: '备用邮箱',
-      description: `${'已绑定邮箱：'}：ant***sign.com`,
-      actions: [<a key="Modify">修改</a>],
+      title: formatMessage({ id: 'account-settings.security.email' }, {}),
+      description: `${formatMessage(
+        { id: 'account-settings.security.email-description' },
+        {},
+      )}：ant***sign.com`,
+      actions: [
+        <a key="Modify">
+          <FormattedMessage id="account-settings.security.modify" defaultMessage="Modify" />
+        </a>,
+      ],
     },
     {
-      title: 'MFA 设备',
-      description: '未绑定 MFA 设备，绑定后，可以进行二次确认',
-      actions: [<a key="bind">绑定</a>],
+      title: formatMessage({ id: 'account-settings.security.mfa' }, {}),
+      description: formatMessage({ id: 'account-settings.security.mfa-description' }, {}),
+      actions: [
+        <a key="bind">
+          <FormattedMessage id="account-settings.security.bind" defaultMessage="Bind" />
+        </a>,
+      ],
     },
   ];
 

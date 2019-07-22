@@ -1,7 +1,9 @@
 import { Col, Row } from 'antd';
 import GGEditor, { Koni } from 'gg-editor';
+
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import React from 'react';
+import { formatMessage } from 'umi-plugin-react/locale';
 import EditorMinimap from './components/EditorMinimap';
 import { KoniContextMenu } from './components/EditorContextMenu';
 import { KoniDetailPanel } from './components/EditorDetailPanel';
@@ -10,8 +12,14 @@ import { KoniToolbar } from './components/EditorToolbar';
 import styles from './index.less';
 
 GGEditor.setTrackable(false);
+
 export default () => (
-  <PageHeaderWrapper content="拓扑结构图是指由网络节点设备和通信介质构成的网络结构图">
+  <PageHeaderWrapper
+    content={formatMessage({
+      id: 'editor-koni.description',
+      defaultMessage: 'description',
+    })}
+  >
     <GGEditor className={styles.editor}>
       <Row type="flex" className={styles.editorHd}>
         <Col span={24}>

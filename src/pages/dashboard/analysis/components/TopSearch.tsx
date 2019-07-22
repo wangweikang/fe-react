@@ -1,7 +1,9 @@
 import { Card, Col, Icon, Row, Table, Tooltip } from 'antd';
+import { FormattedMessage } from 'umi-plugin-react/locale';
 import React from 'react';
 import numeral from 'numeral';
 import { SearchDataType, VisitDataType } from '../data.d';
+
 import { MiniArea } from './Charts';
 import NumberInfo from './NumberInfo';
 import Trend from './Trend';
@@ -9,56 +11,33 @@ import styles from '../style.less';
 
 const columns = [
   {
-    title: '排名',
+    title: <FormattedMessage id="dashboard-analysis.table.rank" defaultMessage="Rank" />,
     dataIndex: 'index',
     key: 'index',
   },
   {
-    title: '搜索关键词',
+    title: (
+      <FormattedMessage id="dashboard-analysis.table.search-keyword" defaultMessage="Search keyword" />
+    ),
     dataIndex: 'keyword',
     key: 'keyword',
     render: (text: React.ReactNode) => <a href="/">{text}</a>,
   },
   {
-    title: '用户数',
+    title: <FormattedMessage id="dashboard-analysis.table.users" defaultMessage="Users" />,
     dataIndex: 'count',
     key: 'count',
-    sorter: (
-      a: {
-        count: number;
-      },
-      b: {
-        count: number;
-      },
-    ) => a.count - b.count,
+    sorter: (a: { count: number }, b: { count: number }) => a.count - b.count,
     className: styles.alignRight,
   },
   {
-    title: '周涨幅',
+    title: <FormattedMessage id="dashboard-analysis.table.weekly-range" defaultMessage="Weekly Range" />,
     dataIndex: 'range',
     key: 'range',
-    sorter: (
-      a: {
-        range: number;
-      },
-      b: {
-        range: number;
-      },
-    ) => a.range - b.range,
-    render: (
-      text: React.ReactNode,
-      record: {
-        status: number;
-      },
-    ) => (
+    sorter: (a: { range: number }, b: { range: number }) => a.range - b.range,
+    render: (text: React.ReactNode, record: { status: number }) => (
       <Trend flag={record.status === 1 ? 'down' : 'up'}>
-        <span
-          style={{
-            marginRight: 4,
-          }}
-        >
-          {text}%
-        </span>
+        <span style={{ marginRight: 4 }}>{text}%</span>
       </Trend>
     ),
   },
@@ -78,31 +57,32 @@ const TopSearch = ({
   <Card
     loading={loading}
     bordered={false}
-    title="线上热门搜索"
+    title={
+      <FormattedMessage
+        id="dashboard-analysis.analysis.online-top-search"
+        defaultMessage="Online Top Search"
+      />
+    }
     extra={dropdownGroup}
     style={{
       height: '100%',
     }}
   >
     <Row gutter={68} type="flex">
-      <Col
-        sm={12}
-        xs={24}
-        style={{
-          marginBottom: 24,
-        }}
-      >
+      <Col sm={12} xs={24} style={{ marginBottom: 24 }}>
         <NumberInfo
           subTitle={
             <span>
-              搜索用户数
-              <Tooltip title="指标说明">
-                <Icon
-                  style={{
-                    marginLeft: 8,
-                  }}
-                  type="info-circle-o"
-                />
+              <FormattedMessage
+                id="dashboard-analysis.analysis.search-users"
+                defaultMessage="search users"
+              />
+              <Tooltip
+                title={
+                  <FormattedMessage id="dashboard-analysis.analysis.introduce" defaultMessage="introduce" />
+                }
+              >
+                <Icon style={{ marginLeft: 8 }} type="info-circle-o" />
               </Tooltip>
             </span>
           }
@@ -113,24 +93,20 @@ const TopSearch = ({
         />
         <MiniArea line height={45} data={visitData2} />
       </Col>
-      <Col
-        sm={12}
-        xs={24}
-        style={{
-          marginBottom: 24,
-        }}
-      >
+      <Col sm={12} xs={24} style={{ marginBottom: 24 }}>
         <NumberInfo
           subTitle={
             <span>
-              人均搜索次数
-              <Tooltip title="指标说明">
-                <Icon
-                  style={{
-                    marginLeft: 8,
-                  }}
-                  type="info-circle-o"
-                />
+              <FormattedMessage
+                id="dashboard-analysis.analysis.per-capita-search"
+                defaultMessage="Per Capita Search"
+              />
+              <Tooltip
+                title={
+                  <FormattedMessage id="dashboard-analysis.analysis.introduce" defaultMessage="introduce" />
+                }
+              >
+                <Icon style={{ marginLeft: 8 }} type="info-circle-o" />
               </Tooltip>
             </span>
           }
@@ -148,9 +124,7 @@ const TopSearch = ({
       columns={columns}
       dataSource={searchData}
       pagination={{
-        style: {
-          marginBottom: 0,
-        },
+        style: { marginBottom: 0 },
         pageSize: 5,
       }}
     />

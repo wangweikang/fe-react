@@ -1,24 +1,37 @@
+import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import { Icon, List } from 'antd';
 import React, { Component, Fragment } from 'react';
 
 class BindingView extends Component {
   getData = () => [
     {
-      title: '绑定淘宝',
-      description: '当前未绑定淘宝账号',
-      actions: [<a key="Bind">绑定</a>],
+      title: formatMessage({ id: 'account-settings.binding.taobao' }, {}),
+      description: formatMessage({ id: 'account-settings.binding.taobao-description' }, {}),
+      actions: [
+        <a key="Bind">
+          <FormattedMessage id="account-settings.binding.bind" defaultMessage="Bind" />
+        </a>,
+      ],
       avatar: <Icon type="taobao" className="taobao" />,
     },
     {
-      title: '绑定支付宝',
-      description: '当前未绑定支付宝账号',
-      actions: [<a key="Bind">绑定</a>],
+      title: formatMessage({ id: 'account-settings.binding.alipay' }, {}),
+      description: formatMessage({ id: 'account-settings.binding.alipay-description' }, {}),
+      actions: [
+        <a key="Bind">
+          <FormattedMessage id="account-settings.binding.bind" defaultMessage="Bind" />
+        </a>,
+      ],
       avatar: <Icon type="alipay" className="alipay" />,
     },
     {
-      title: '绑定钉钉',
-      description: '当前未绑定钉钉账号',
-      actions: [<a key="Bind">绑定</a>],
+      title: formatMessage({ id: 'account-settings.binding.dingding' }, {}),
+      description: formatMessage({ id: 'account-settings.binding.dingding-description' }, {}),
+      actions: [
+        <a key="Bind">
+          <FormattedMessage id="account-settings.binding.bind" defaultMessage="Bind" />
+        </a>,
+      ],
       avatar: <Icon type="dingding" className="dingding" />,
     },
   ];

@@ -1,65 +1,56 @@
 import { Button, Card, Icon, Result } from 'antd';
+import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Fragment } from 'react';
+
 import { GridContent } from '@ant-design/pro-layout';
 import styles from './index.less';
 
 const Content = (
   <Fragment>
-    <div className={styles.title}>您提交的内容有如下错误：</div>
-    <div
-      style={{
-        marginBottom: 16,
-      }}
-    >
-      <Icon
-        style={{
-          marginRight: 8,
-        }}
-        className={styles.error_icon}
-        type="close-circle-o"
+    <div className={styles.title}>
+      <FormattedMessage
+        id="result-fail.error.hint-title"
+        defaultMessage="The content you submitted has the following error:"
       />
-      您的账户已被冻结
-      <a
-        style={{
-          marginLeft: 16,
-        }}
-      >
-        立即解冻
+    </div>
+    <div style={{ marginBottom: 16 }}>
+      <Icon style={{ marginRight: 8 }} className={styles.error_icon} type="close-circle-o" />
+      <FormattedMessage
+        id="result-fail.error.hint-text1"
+        defaultMessage="Your account has been frozen"
+      />
+      <a style={{ marginLeft: 16 }}>
+        <FormattedMessage id="result-fail.error.hint-btn1" defaultMessage="Thaw immediately" />
         <Icon type="right" />
       </a>
     </div>
     <div>
-      <Icon
-        style={{
-          marginRight: 8,
-        }}
-        className={styles.error_icon}
-        type="close-circle-o"
+      <Icon style={{ marginRight: 8 }} className={styles.error_icon} type="close-circle-o" />
+      <FormattedMessage
+        id="result-fail.error.hint-text2"
+        defaultMessage="Your account is not yet eligible to apply"
       />
-      您的账户还不具备申请资格
-      <a
-        style={{
-          marginLeft: 16,
-        }}
-      >
-        立即升级
+      <a style={{ marginLeft: 16 }}>
+        <FormattedMessage id="result-fail.error.hint-btn2" defaultMessage="Upgrade immediately" />
         <Icon type="right" />
       </a>
     </div>
   </Fragment>
 );
+
 export default () => (
   <GridContent>
     <Card bordered={false}>
       <Result
         status="error"
-        title="提交失败"
-        subTitle="请核对并修改以下信息后，再重新提交。"
-        extra={<Button type="primary">返回修改</Button>}
-        style={{
-          marginTop: 48,
-          marginBottom: 16,
-        }}
+        title={formatMessage({ id: 'result-fail.error.title' })}
+        subTitle={formatMessage({ id: 'result-fail.error.description' })}
+        extra={
+          <Button type="primary">
+            <FormattedMessage id="result-fail.error.btn-text" defaultMessage="Return to modify" />
+          </Button>
+        }
+        style={{ marginTop: 48, marginBottom: 16 }}
       >
         {Content}
       </Result>

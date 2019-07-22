@@ -1,21 +1,37 @@
 import { Button, Col, Form, Input, Popover, Progress, Row, Select, message } from 'antd';
+import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Component } from 'react';
 import { Dispatch } from 'redux';
 import { FormComponentProps } from 'antd/es/form';
 import Link from 'umi/link';
 import { connect } from 'dva';
 import router from 'umi/router';
+
 import { StateType } from './model';
 import styles from './style.less';
 
 const FormItem = Form.Item;
 const { Option } = Select;
 const InputGroup = Input.Group;
+
 const passwordStatusMap = {
-  ok: <div className={styles.success}>强度：强</div>,
-  pass: <div className={styles.warning}>强度：中</div>,
-  poor: <div className={styles.error}>强度：太短</div>,
+  ok: (
+    <div className={styles.success}>
+      <FormattedMessage id="user-register.strength.strong" />
+    </div>
+  ),
+  pass: (
+    <div className={styles.warning}>
+      <FormattedMessage id="user-register.strength.medium" />
+    </div>
+  ),
+  poor: (
+    <div className={styles.error}>
+      <FormattedMessage id="user-register.strength.short" />
+    </div>
+  ),
 };
+
 const passwordProgressMap: {
   ok: 'success';
   pass: 'normal';
@@ -25,6 +41,7 @@ const passwordProgressMap: {
   pass: 'normal',
   poor: 'exception',
 };
+
 interface userRegisterProps extends FormComponentProps {
   dispatch: Dispatch<any>;
   userRegister: StateType;
@@ -37,6 +54,7 @@ interface userRegisterState {
   help: string;
   prefix: string;
 }
+
 export interface UserRegisterParams {
   mail: string;
   password: string;
@@ -62,7 +80,10 @@ export interface UserRegisterParams {
     submitting: loading.effects['userRegister/submit'],
   }),
 )
-class Register extends Component<userRegisterProps, userRegisterState> {
+class Register extends Component<
+  userRegisterProps,
+  userRegisterState
+> {
   state: userRegisterState = {
     count: 0,
     confirmDirty: false,
@@ -76,7 +97,6 @@ class Register extends Component<userRegisterProps, userRegisterState> {
   componentDidUpdate() {
     const { userRegister, form } = this.props;
     const account = form.getFieldValue('mail');
-
     if (userRegister.status === 'ok') {
       message.success('注册成功！');
       router.push({
@@ -94,15 +114,10 @@ class Register extends Component<userRegisterProps, userRegisterState> {
 
   onGetCaptcha = () => {
     let count = 59;
-    this.setState({
-      count,
-    });
+    this.setState({ count });
     this.interval = window.setInterval(() => {
       count -= 1;
-      this.setState({
-        count,
-      });
-
+      this.setState({ count });
       if (count === 0) {
         clearInterval(this.interval);
       }
@@ -112,42 +127,36 @@ class Register extends Component<userRegisterProps, userRegisterState> {
   getPasswordStatus = () => {
     const { form } = this.props;
     const value = form.getFieldValue('password');
-
     if (value && value.length > 9) {
       return 'ok';
     }
-
     if (value && value.length > 5) {
       return 'pass';
     }
-
     return 'poor';
   };
 
   handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const { form, dispatch } = this.props;
-    form.validateFields(
-      {
-        force: true,
-      },
-      (err, values) => {
-        if (!err) {
-          const { prefix } = this.state;
-          dispatch({
-            type: 'userRegister/submit',
-            payload: { ...values, prefix },
-          });
-        }
-      },
-    );
+    form.validateFields({ force: true }, (err, values) => {
+      if (!err) {
+        const { prefix } = this.state;
+        dispatch({
+          type: 'userRegister/submit',
+          payload: {
+            ...values,
+            prefix,
+          },
+        });
+      }
+    });
   };
 
   checkConfirm = (rule: any, value: string, callback: (messgae?: string) => void) => {
     const { form } = this.props;
-
     if (value && value !== form.getFieldValue('password')) {
-      callback('两次输入的密码不匹配!');
+      callback(formatMessage({ id: 'user-register.password.twice' }));
     } else {
       callback();
     }
@@ -155,10 +164,9 @@ class Register extends Component<userRegisterProps, userRegisterState> {
 
   checkPassword = (rule: any, value: string, callback: (messgae?: string) => void) => {
     const { visible, confirmDirty } = this.state;
-
     if (!value) {
       this.setState({
-        help: '请输入密码！',
+        help: formatMessage({ id: 'user-register.password.required' }),
         visible: !!value,
       });
       callback('error');
@@ -166,24 +174,18 @@ class Register extends Component<userRegisterProps, userRegisterState> {
       this.setState({
         help: '',
       });
-
       if (!visible) {
         this.setState({
           visible: !!value,
         });
       }
-
       if (value.length < 6) {
         callback('error');
       } else {
         const { form } = this.props;
-
         if (value && confirmDirty) {
-          form.validateFields(['confirm'], {
-            force: true,
-          });
+          form.validateFields(['confirm'], { force: true });
         }
-
         callback();
       }
     }
@@ -218,21 +220,28 @@ class Register extends Component<userRegisterProps, userRegisterState> {
     const { count, prefix, help, visible } = this.state;
     return (
       <div className={styles.main}>
-        <h3>注册</h3>
+        <h3>
+          <FormattedMessage id="user-register.register.register" />
+        </h3>
         <Form onSubmit={this.handleSubmit}>
           <FormItem>
             {getFieldDecorator('mail', {
               rules: [
                 {
                   required: true,
-                  message: '请输入邮箱地址！',
+                  message: formatMessage({ id: 'user-register.email.required' }),
                 },
                 {
                   type: 'email',
-                  message: '邮箱地址格式错误！',
+                  message: formatMessage({ id: 'user-register.email.wrong-format' }),
                 },
               ],
-            })(<Input size="large" placeholder="邮箱" />)}
+            })(
+              <Input
+                size="large"
+                placeholder={formatMessage({ id: 'user-register.email.placeholder' })}
+              />,
+            )}
           </FormItem>
           <FormItem help={help}>
             <Popover
@@ -240,29 +249,18 @@ class Register extends Component<userRegisterProps, userRegisterState> {
                 if (node && node.parentNode) {
                   return node.parentNode as HTMLElement;
                 }
-
                 return node;
               }}
               content={
-                <div
-                  style={{
-                    padding: '4px 0',
-                  }}
-                >
+                <div style={{ padding: '4px 0' }}>
                   {passwordStatusMap[this.getPasswordStatus()]}
                   {this.renderPasswordProgress()}
-                  <div
-                    style={{
-                      marginTop: 10,
-                    }}
-                  >
-                    请至少输入 6 个字符。请不要使用容易被猜到的密码。
+                  <div style={{ marginTop: 10 }}>
+                    <FormattedMessage id="user-register.strength.msg" />
                   </div>
                 </div>
               }
-              overlayStyle={{
-                width: 240,
-              }}
+              overlayStyle={{ width: 240 }}
               placement="right"
               visible={visible}
             >
@@ -272,7 +270,13 @@ class Register extends Component<userRegisterProps, userRegisterState> {
                     validator: this.checkPassword,
                   },
                 ],
-              })(<Input size="large" type="password" placeholder="至少6位密码，区分大小写" />)}
+              })(
+                <Input
+                  size="large"
+                  type="password"
+                  placeholder={formatMessage({ id: 'user-register.password.placeholder' })}
+                />,
+              )}
             </Popover>
           </FormItem>
           <FormItem>
@@ -280,13 +284,19 @@ class Register extends Component<userRegisterProps, userRegisterState> {
               rules: [
                 {
                   required: true,
-                  message: '请确认密码！',
+                  message: formatMessage({ id: 'user-register.confirm-password.required' }),
                 },
                 {
                   validator: this.checkConfirm,
                 },
               ],
-            })(<Input size="large" type="password" placeholder="确认密码" />)}
+            })(
+              <Input
+                size="large"
+                type="password"
+                placeholder={formatMessage({ id: 'user-register.confirm-password.placeholder' })}
+              />,
+            )}
           </FormItem>
           <FormItem>
             <InputGroup compact>
@@ -294,9 +304,7 @@ class Register extends Component<userRegisterProps, userRegisterState> {
                 size="large"
                 value={prefix}
                 onChange={this.changePrefix}
-                style={{
-                  width: '20%',
-                }}
+                style={{ width: '20%' }}
               >
                 <Option value="86">+86</Option>
                 <Option value="87">+87</Option>
@@ -305,20 +313,18 @@ class Register extends Component<userRegisterProps, userRegisterState> {
                 rules: [
                   {
                     required: true,
-                    message: '请输入手机号！',
+                    message: formatMessage({ id: 'user-register.phone-number.required' }),
                   },
                   {
                     pattern: /^\d{11}$/,
-                    message: '手机号格式错误！',
+                    message: formatMessage({ id: 'user-register.phone-number.wrong-format' }),
                   },
                 ],
               })(
                 <Input
                   size="large"
-                  style={{
-                    width: '80%',
-                  }}
-                  placeholder="手机号"
+                  style={{ width: '80%' }}
+                  placeholder={formatMessage({ id: 'user-register.phone-number.placeholder' })}
                 />,
               )}
             </InputGroup>
@@ -330,10 +336,15 @@ class Register extends Component<userRegisterProps, userRegisterState> {
                   rules: [
                     {
                       required: true,
-                      message: '请输入验证码！',
+                      message: formatMessage({ id: 'user-register.verification-code.required' }),
                     },
                   ],
-                })(<Input size="large" placeholder="验证码" />)}
+                })(
+                  <Input
+                    size="large"
+                    placeholder={formatMessage({ id: 'user-register.verification-code.placeholder' })}
+                  />,
+                )}
               </Col>
               <Col span={8}>
                 <Button
@@ -342,7 +353,9 @@ class Register extends Component<userRegisterProps, userRegisterState> {
                   className={styles.getCaptcha}
                   onClick={this.onGetCaptcha}
                 >
-                  {count ? `${count} s` : '获取验证码'}
+                  {count
+                    ? `${count} s`
+                    : formatMessage({ id: 'user-register.register.get-verification-code' })}
                 </Button>
               </Col>
             </Row>
@@ -355,10 +368,10 @@ class Register extends Component<userRegisterProps, userRegisterState> {
               type="primary"
               htmlType="submit"
             >
-              注册
+              <FormattedMessage id="user-register.register.register" />
             </Button>
             <Link className={styles.login} to="/user/login">
-              使用已有账户登录
+              <FormattedMessage id="user-register.register.sign-in" />
             </Link>
           </FormItem>
         </Form>

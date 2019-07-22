@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import { Dispatch } from 'redux';
+import { FormattedMessage } from 'umi-plugin-react/locale';
 import { GridContent } from '@ant-design/pro-layout';
 import { Menu } from 'antd';
 import { connect } from 'dva';
@@ -11,10 +13,12 @@ import SecurityView from './components/security';
 import styles from './style.less';
 
 const { Item } = Menu;
+
 interface SettingsProps {
   dispatch: Dispatch<any>;
   currentUser: CurrentUser;
 }
+
 type SettingsStateKeys = 'base' | 'security' | 'binding' | 'notification';
 interface SettingsState {
   mode: 'inline' | 'horizontal';
@@ -23,20 +27,31 @@ interface SettingsState {
   };
   selectKey: SettingsStateKeys;
 }
-
 @connect(({ accountSettings }: { accountSettings: { currentUser: CurrentUser } }) => ({
   currentUser: accountSettings.currentUser,
 }))
-class Settings extends Component<SettingsProps, SettingsState> {
+class Settings extends Component<
+  SettingsProps,
+  SettingsState
+> {
   main: HTMLDivElement | undefined = undefined;
 
   constructor(props: SettingsProps) {
     super(props);
     const menuMap = {
-      base: '基本设置',
-      security: '安全设置',
-      binding: '账号绑定',
-      notification: '新消息通知',
+      base: <FormattedMessage id="account-settings.menuMap.basic" defaultMessage="Basic Settings" />,
+      security: (
+        <FormattedMessage id="account-settings.menuMap.security" defaultMessage="Security Settings" />
+      ),
+      binding: (
+        <FormattedMessage id="account-settings.menuMap.binding" defaultMessage="Account Binding" />
+      ),
+      notification: (
+        <FormattedMessage
+          id="account-settings.menuMap.notification"
+          defaultMessage="New Message Notification"
+        />
+      ),
     };
     this.state = {
       mode: 'inline',
@@ -78,23 +93,18 @@ class Settings extends Component<SettingsProps, SettingsState> {
     if (!this.main) {
       return;
     }
-
     requestAnimationFrame(() => {
       if (!this.main) {
         return;
       }
-
       let mode: 'inline' | 'horizontal' = 'inline';
       const { offsetWidth } = this.main;
-
       if (this.main.offsetWidth < 641 && offsetWidth > 400) {
         mode = 'horizontal';
       }
-
       if (window.innerWidth < 768 && offsetWidth > 400) {
         mode = 'horizontal';
       }
-
       this.setState({
         mode,
       });
@@ -103,20 +113,15 @@ class Settings extends Component<SettingsProps, SettingsState> {
 
   renderChildren = () => {
     const { selectKey } = this.state;
-
     switch (selectKey) {
       case 'base':
         return <BaseView />;
-
       case 'security':
         return <SecurityView />;
-
       case 'binding':
         return <BindingView />;
-
       case 'notification':
         return <NotificationView />;
-
       default:
         break;
     }
@@ -126,11 +131,9 @@ class Settings extends Component<SettingsProps, SettingsState> {
 
   render() {
     const { currentUser } = this.props;
-
     if (!currentUser.userid) {
       return '';
     }
-
     const { mode, selectKey } = this.state;
     return (
       <GridContent>

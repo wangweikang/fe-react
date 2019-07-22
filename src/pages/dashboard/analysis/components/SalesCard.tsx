@@ -1,4 +1,6 @@
 import { Card, Col, DatePicker, Row, Tabs } from 'antd';
+import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
+
 import { RangePickerValue } from 'antd/es/date-picker/interface';
 import React from 'react';
 import numeral from 'numeral';
@@ -8,14 +10,11 @@ import styles from '../style.less';
 
 const { RangePicker } = DatePicker;
 const { TabPane } = Tabs;
-const rankingListData: {
-  title: string;
-  total: number;
-}[] = [];
 
+const rankingListData: { title: string; total: number }[] = [];
 for (let i = 0; i < 7; i += 1) {
   rankingListData.push({
-    title: '工专路 {no} 号店',
+    title: formatMessage({ id: 'dashboard-analysis.analysis.test' }, { no: i }),
     total: 323234,
   });
 }
@@ -35,55 +34,62 @@ const SalesCard = ({
   handleRangePickerChange: (dates: RangePickerValue, dateStrings: [string, string]) => void;
   selectDate: (key: 'today' | 'week' | 'month' | 'year') => void;
 }) => (
-  <Card
-    loading={loading}
-    bordered={false}
-    bodyStyle={{
-      padding: 0,
-    }}
-  >
+  <Card loading={loading} bordered={false} bodyStyle={{ padding: 0 }}>
     <div className={styles.salesCard}>
       <Tabs
         tabBarExtraContent={
           <div className={styles.salesExtraWrap}>
             <div className={styles.salesExtra}>
               <a className={isActive('today')} onClick={() => selectDate('today')}>
-                今日
+                <FormattedMessage id="dashboard-analysis.analysis.all-day" defaultMessage="All Day" />
               </a>
               <a className={isActive('week')} onClick={() => selectDate('week')}>
-                本周
+                <FormattedMessage id="dashboard-analysis.analysis.all-week" defaultMessage="All Week" />
               </a>
               <a className={isActive('month')} onClick={() => selectDate('month')}>
-                本月
+                <FormattedMessage id="dashboard-analysis.analysis.all-month" defaultMessage="All Month" />
               </a>
               <a className={isActive('year')} onClick={() => selectDate('year')}>
-                全年
+                <FormattedMessage id="dashboard-analysis.analysis.all-year" defaultMessage="All Year" />
               </a>
             </div>
             <RangePicker
               value={rangePickerValue}
               onChange={handleRangePickerChange}
-              style={{
-                width: 256,
-              }}
+              style={{ width: 256 }}
             />
           </div>
         }
         size="large"
-        tabBarStyle={{
-          marginBottom: 24,
-        }}
+        tabBarStyle={{ marginBottom: 24 }}
       >
-        <TabPane tab="销售额" key="sales">
+        <TabPane
+          tab={<FormattedMessage id="dashboard-analysis.analysis.sales" defaultMessage="Sales" />}
+          key="sales"
+        >
           <Row type="flex">
             <Col xl={16} lg={12} md={12} sm={24} xs={24}>
               <div className={styles.salesBar}>
-                <Bar height={295} title="销售趋势" data={salesData} />
+                <Bar
+                  height={295}
+                  title={
+                    <FormattedMessage
+                      id="dashboard-analysis.analysis.sales-trend"
+                      defaultMessage="Sales Trend"
+                    />
+                  }
+                  data={salesData}
+                />
               </div>
             </Col>
             <Col xl={8} lg={12} md={12} sm={24} xs={24}>
               <div className={styles.salesRank}>
-                <h4 className={styles.rankingTitle}>门店销售额排名</h4>
+                <h4 className={styles.rankingTitle}>
+                  <FormattedMessage
+                    id="dashboard-analysis.analysis.sales-ranking"
+                    defaultMessage="Sales Ranking"
+                  />
+                </h4>
                 <ul className={styles.rankingList}>
                   {rankingListData.map((item, i) => (
                     <li key={item.title}>
@@ -103,16 +109,33 @@ const SalesCard = ({
             </Col>
           </Row>
         </TabPane>
-        <TabPane tab="访问量" key="views">
+        <TabPane
+          tab={<FormattedMessage id="dashboard-analysis.analysis.visits" defaultMessage="Visits" />}
+          key="views"
+        >
           <Row>
             <Col xl={16} lg={12} md={12} sm={24} xs={24}>
               <div className={styles.salesBar}>
-                <Bar height={292} title="访问量趋势" data={salesData} />
+                <Bar
+                  height={292}
+                  title={
+                    <FormattedMessage
+                      id="dashboard-analysis.analysis.visits-trend"
+                      defaultMessage="Visits Trend"
+                    />
+                  }
+                  data={salesData}
+                />
               </div>
             </Col>
             <Col xl={8} lg={12} md={12} sm={24} xs={24}>
               <div className={styles.salesRank}>
-                <h4 className={styles.rankingTitle}>门店访问量排名</h4>
+                <h4 className={styles.rankingTitle}>
+                  <FormattedMessage
+                    id="dashboard-analysis.analysis.visits-ranking"
+                    defaultMessage="Visits Ranking"
+                  />
+                </h4>
                 <ul className={styles.rankingList}>
                   {rankingListData.map((item, i) => (
                     <li key={item.title}>

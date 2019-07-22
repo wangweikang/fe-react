@@ -1,4 +1,6 @@
 import { Card, Radio } from 'antd';
+
+import { FormattedMessage } from 'umi-plugin-react/locale';
 import { RadioChangeEvent } from 'antd/es/radio';
 import React from 'react';
 import { VisitDataType } from '../data.d';
@@ -23,7 +25,12 @@ const ProportionSales = ({
     loading={loading}
     className={styles.salesCard}
     bordered={false}
-    title="销售额类别占比"
+    title={
+      <FormattedMessage
+        id="dashboard-analysis.analysis.the-proportion-of-sales"
+        defaultMessage="The Proportion of Sales"
+      />
+    }
     style={{
       height: '100%',
     }}
@@ -32,26 +39,27 @@ const ProportionSales = ({
         {dropdownGroup}
         <div className={styles.salesTypeRadio}>
           <Radio.Group value={salesType} onChange={handleChangeSalesType}>
-            <Radio.Button value="all">全部渠道</Radio.Button>
-            <Radio.Button value="online">线上</Radio.Button>
-            <Radio.Button value="stores">门店</Radio.Button>
+            <Radio.Button value="all">
+              <FormattedMessage id="dashboard-analysis.channel.all" defaultMessage="ALL" />
+            </Radio.Button>
+            <Radio.Button value="online">
+              <FormattedMessage id="dashboard-analysis.channel.online" defaultMessage="Online" />
+            </Radio.Button>
+            <Radio.Button value="stores">
+              <FormattedMessage id="dashboard-analysis.channel.stores" defaultMessage="Stores" />
+            </Radio.Button>
           </Radio.Group>
         </div>
       </div>
     }
   >
     <div>
-      <h4
-        style={{
-          marginTop: 8,
-          marginBottom: 32,
-        }}
-      >
-        销售额
+      <h4 style={{ marginTop: 8, marginBottom: 32 }}>
+        <FormattedMessage id="dashboard-analysis.analysis.sales" defaultMessage="Sales" />
       </h4>
       <Pie
         hasLegend
-        subTitle="销售额"
+        subTitle={<FormattedMessage id="dashboard-analysis.analysis.sales" defaultMessage="Sales" />}
         total={() => <Yuan>{salesPieData.reduce((pre, now) => now.y + pre, 0)}</Yuan>}
         data={salesPieData}
         valueFormat={value => <Yuan>{value}</Yuan>}

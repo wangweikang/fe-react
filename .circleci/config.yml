@@ -43,7 +43,7 @@ jobs:
       - run:
           name: update service
           command: |
-            curl -X POST ${web_webhooks}
+            curl -X POST ${ui_webhooks}
 workflows:
   version: 2
   build-and-deploy:

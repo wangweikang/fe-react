@@ -1,0 +1,36 @@
+version: "3.5"
+
+services:
+#   nginx:
+#     image: nginx:1.17-alpine
+#     volumes:
+#       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+#     networks:
+#       - ui_net
+#       - nginx-net
+#     environment:
+#       VIRTUAL_HOST: thiswjk.xyz
+#       VIRTUAL_PORT: 8000
+#       LETSENCRYPT_HOST: thiswjk.xyz
+#       LETSENCRYPT_EMAIL: kangmang92@gmail.com
+
+  ui:
+    image: registry.thiswjk.xyz/will/ui:latest
+    volumes:
+      - dist:/usr/src/app/dist
+    # command: sh -c "test -d node_modules && npm start || (npm install && npm start)"
+    environment:
+      VIRTUAL_HOST: thiswjk.xyz
+      VIRTUAL_PORT: 8080
+      LETSENCRYPT_HOST: thiswjk.xyz
+      LETSENCRYPT_EMAIL: kangmang92@gmail.com
+    networks:
+      - nginx-net
+
+volumes:
+  dist:
+
+networks:
+  ui_net:
+  nginx-net:
+    external: true

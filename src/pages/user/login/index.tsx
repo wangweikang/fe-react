@@ -1,4 +1,4 @@
-import { Alert, Checkbox, Icon } from 'antd';
+import { Alert, Checkbox, Icon, Button } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Component } from 'react';
 
@@ -100,6 +100,10 @@ class Login extends Component<
       });
     });
 
+  toBlog = () => {
+    window.location.href = 'https://blogs.thiswjk.xyz'
+  }
+
   renderMessage = (content: string) => (
     <Alert style={{ marginBottom: 24 }} message={content} type="error" showIcon />
   );
@@ -110,6 +114,12 @@ class Login extends Component<
     const { type, autoLogin } = this.state;
     return (
       <div className={styles.main}>
+        <Button
+          block
+          type="danger"
+          onClick={this.toBlog}>
+            我的博客
+        </Button>
         <LoginComponents
           defaultActiveKey={type}
           onTabChange={this.onTabChange}
@@ -195,7 +205,7 @@ class Login extends Component<
             </a>
           </div>
           <Submit loading={submitting}>
-            <FormattedMessage id="user-login.login.login" />
+            登录
           </Submit>
           <div className={styles.other}>
             <FormattedMessage id="user-login.login.sign-in-with" />

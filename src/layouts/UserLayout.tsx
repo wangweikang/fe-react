@@ -9,6 +9,7 @@ import SelectLang from '@/components/SelectLang';
 import { ConnectProps, ConnectState } from '@/models/connect';
 import logo from '../assets/logo.svg';
 import styles from './UserLayout.less';
+import FooterToolbar from '@/pages/form/advanced-form/components/FooterToolbar';
 
 export interface UserLayoutProps extends ConnectProps {
   breadcrumbNameMap: { [path: string]: MenuDataItem };
@@ -47,14 +48,25 @@ const UserLayout: React.SFC<UserLayoutProps> = props => {
             <div className={styles.header}>
               <Link to="/">
                 <img alt="logo" className={styles.logo} src={logo} />
-                <span className={styles.title}>Ant Design</span>
+                <span className={styles.title}>This Will</span>
               </Link>
             </div>
-            <div className={styles.desc}>Ant Design 是西湖区最具影响力的 Web 设计规范</div>
+            <div className={styles.desc}>
+            </div>
           </div>
           {children}
         </div>
-        <DefaultFooter />
+        <DefaultFooter
+          links={[
+            {
+              title: '我的博客',
+              href: 'https://blogs.thiswjk.xyz',
+              key: '主页',
+            }
+          ]
+          }
+          copyright={'Will的网站'}
+        />
       </div>
     </DocumentTitle>
   );

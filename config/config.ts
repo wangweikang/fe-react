@@ -309,7 +309,7 @@ export default {
             },
             {
               path: '/',
-              redirect: '/dashboard/analysis',
+              redirect: '/dashboard/workplace',
               authority: ['admin', 'user'],
             },
             {

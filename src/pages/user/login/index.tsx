@@ -72,7 +72,8 @@ class Login extends Component<
           ...values,
           type,
         },
-      });
+      })
+      .then(() => this.props.history.push('/dashboard/workplace'))
     }
   };
 

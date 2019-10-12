@@ -1,3 +1,4 @@
+import { Icon } from 'antd';
 import { DefaultFooter, MenuDataItem, getMenuData, getPageTitle } from '@ant-design/pro-layout';
 import DocumentTitle from 'react-document-title';
 import Link from 'umi/link';
@@ -9,7 +10,6 @@ import SelectLang from '@/components/SelectLang';
 import { ConnectProps, ConnectState } from '@/models/connect';
 import logo from '../assets/logo.svg';
 import styles from './UserLayout.less';
-import FooterToolbar from '@/pages/form/advanced-form/components/FooterToolbar';
 
 export interface UserLayoutProps extends ConnectProps {
   breadcrumbNameMap: { [path: string]: MenuDataItem };
@@ -59,13 +59,18 @@ const UserLayout: React.SFC<UserLayoutProps> = props => {
         <DefaultFooter
           links={[
             {
+              title: <Icon type="highlight" className={styles.icon} theme="outlined" />,
+              href: 'https://blogs.thiswjk.xyz',
+              key: '主页',
+            },
+            {
               title: '我的博客',
               href: 'https://blogs.thiswjk.xyz',
               key: '主页',
-            }
+            },
           ]
           }
-          copyright={'Will的网站'}
+          copyright="Will的网站"
         />
       </div>
     </DocumentTitle>

@@ -66,13 +66,13 @@ class Login extends Component<
     const { type } = this.state;
     if (!err) {
       const { dispatch } = this.props;
-      dispatch({
+      ((dispatch({
         type: 'userLogin/login',
         payload: {
           ...values,
           type,
         },
-      })
+      }) as unknown) as Promise<any>)
       .then(() => this.props.history.push('/dashboard/workplace'))
     }
   };

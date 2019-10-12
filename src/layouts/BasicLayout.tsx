@@ -1,8 +1,11 @@
 import ProLayout, {
+  DefaultFooter,
   MenuDataItem,
   BasicLayoutProps as ProLayoutProps,
   Settings,
 } from '@ant-design/pro-layout';
+import { Icon } from 'antd';
+
 import React, { useEffect } from 'react';
 import Link from 'umi/link';
 import { connect } from 'dva';
@@ -11,6 +14,7 @@ import Authorized from '@/utils/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import { ConnectState, Dispatch } from '@/models/connect';
 import logo from '../assets/logo.svg';
+import styles from './UserLayout.less';
 
 export interface BasicLayoutProps extends ProLayoutProps {
   breadcrumbNameMap: {
@@ -38,17 +42,33 @@ const footerRender: BasicLayoutProps['footerRender'] = () =>
   <>
     <div
       style={{
-        padding: '0px 24px 24px',
+        padding: '0px 0px 0px',
         textAlign: 'center',
       }}
     >
-      <a href="https://blogs.thiswjk.xyz" target="_blank" rel="noopener noreferrer">
+      <DefaultFooter
+        links={[
+          {
+            title: <Icon type="highlight" className={styles.icon} theme="outlined" />,
+            href: 'https://blogs.thiswjk.xyz',
+            key: '主页',
+          },
+          {
+            title: '我的博客',
+            href: 'https://blogs.thiswjk.xyz',
+            key: '主页',
+          },
+        ]
+        }
+        copyright="Will的网站"
+      />
+      {/* <a href="https://blogs.thiswjk.xyz" target="_blank" rel="noopener noreferrer">
         <img
           src="https://www.z4a.net/content/images/users/UlkVi/av_1564684860.png"
           width="82px"
           alt="netlify logo"
         />
-      </a>
+      </a> */}
     </div>
   </>
 

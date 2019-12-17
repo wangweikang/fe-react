@@ -8,6 +8,7 @@ import HeaderSearch from '../HeaderSearch';
 import SelectLang from '../SelectLang';
 import styles from './index.less';
 import NoticeIconView from './NoticeIconView';
+
 export type SiderTheme = 'light' | 'dark';
 export interface GlobalHeaderRightProps extends ConnectProps {
   theme?: SiderTheme;
@@ -48,22 +49,31 @@ const GlobalHeaderRight: React.SFC<GlobalHeaderRightProps> = props => {
         }}
       />
       <Tooltip
-        title={formatMessage({
-          id: 'component.globalHeader.help',
-        })}
+        title="博客"
       >
         <a
           target="_blank"
-          href="https://pro.ant.design/docs/getting-started"
+          href="https://blogs.thiswjk.xyz"
           rel="noopener noreferrer"
           className={styles.action}
         >
-          <Icon type="question-circle-o" />
+          <Icon type="form" />博客
+        </a>
+      </Tooltip>
+      <Tooltip title="后端API" >
+        <a
+          target="_blank"
+          href="https://api.thiswjk.xyz"
+          rel="noopener noreferrer"
+          className={styles.action}
+        >
+          <Icon type="form" />API
         </a>
       </Tooltip>
       <NoticeIconView />
       <Avatar menu />
-      <SelectLang className={styles.action} />
+      {/* 国际化选择语言 */}
+      {/* <SelectLang className={styles.action} /> */}
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import { Icon } from 'antd';
 import { DefaultFooter, MenuDataItem, getMenuData, getPageTitle } from '@ant-design/pro-layout';
 import DocumentTitle from 'react-document-title';
 import Link from 'umi/link';
@@ -47,14 +48,30 @@ const UserLayout: React.SFC<UserLayoutProps> = props => {
             <div className={styles.header}>
               <Link to="/">
                 <img alt="logo" className={styles.logo} src={logo} />
-                <span className={styles.title}>Ant Design</span>
+                <span className={styles.title}>This Will</span>
               </Link>
             </div>
-            <div className={styles.desc}>Ant Design 是西湖区最具影响力的 Web 设计规范</div>
+            <div className={styles.desc}>
+            </div>
           </div>
           {children}
         </div>
-        <DefaultFooter />
+        <DefaultFooter
+          links={[
+            {
+              title: <Icon type="highlight" className={styles.icon} theme="outlined" />,
+              href: 'https://blogs.thiswjk.xyz',
+              key: '主页',
+            },
+            {
+              title: '我的博客',
+              href: 'https://blogs.thiswjk.xyz',
+              key: '主页',
+            },
+          ]
+          }
+          copyright="Will的网站"
+        />
       </div>
     </DocumentTitle>
   );

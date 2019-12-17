@@ -126,6 +126,11 @@ export default {
               icon: 'dashboard',
               routes: [
                 {
+                  name: 'workplace',
+                  path: '/dashboard/workplace',
+                  component: './dashboard/workplace',
+                },
+                {
                   name: 'analysis',
                   path: '/dashboard/analysis',
                   component: './dashboard/analysis',
@@ -134,11 +139,6 @@ export default {
                   name: 'monitor',
                   path: '/dashboard/monitor',
                   component: './dashboard/monitor',
-                },
-                {
-                  name: 'workplace',
-                  path: '/dashboard/workplace',
-                  component: './dashboard/workplace',
                 },
               ],
             },
@@ -309,7 +309,7 @@ export default {
             },
             {
               path: '/',
-              redirect: '/dashboard/analysis',
+              redirect: '/dashboard/workplace',
               authority: ['admin', 'user'],
             },
             {
